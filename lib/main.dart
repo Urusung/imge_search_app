@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:imge_search_app/tap_screen.dart';
+import 'package:imge_search_app/colors.dart';
+import 'package:imge_search_app/screens/tap_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  dotenv.load(fileName: '.env');
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 12, 101, 229),
+            seedColor: sZSBlue,
           ),
           useMaterial3: true,
         ),

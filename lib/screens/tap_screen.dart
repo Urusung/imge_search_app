@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imge_search_app/favorites_screen.dart';
-import 'package:imge_search_app/search_screen.dart';
+import 'package:imge_search_app/screens/favorite_images_screen.dart';
+import 'package:imge_search_app/screens/search_screen.dart';
 
 class TapScreen extends StatefulWidget {
   const TapScreen({super.key});
@@ -14,7 +14,7 @@ class _TapScreenState extends State<TapScreen> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const SearchScreen(),
-    const FavoritesScreen(),
+    const FavoriteScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -28,6 +28,7 @@ class _TapScreenState extends State<TapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
