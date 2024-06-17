@@ -15,15 +15,12 @@ class FavoriteImagesScreen extends ConsumerWidget {
     final favoriteImagesList = ref.watch(favoriteImagesProvider);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text(
-            'Favorite Images',
-            style: appBarStyle,
-          ),
+        backgroundColor: white,
+        title: const Text(
+          'Favorite Images',
+          style: appBarStyle,
         ),
         scrolledUnderElevation: 0,
       ),
@@ -65,11 +62,17 @@ class FavoriteImagesScreen extends ConsumerWidget {
                     child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: CachedNetworkImage(
-                            imageUrl: favoriteImagesList[index],
-                            fit: BoxFit.cover,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            border: Border.all(color: grey, width: 0.2),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12.0),
+                            child: CachedNetworkImage(
+                              imageUrl: favoriteImagesList[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         IconButton(

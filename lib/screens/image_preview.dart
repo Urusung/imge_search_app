@@ -19,6 +19,18 @@ class ImagePreviewScreen extends StatelessWidget {
       body: Center(
         child: CachedNetworkImage(
           imageUrl: imageUrl,
+          errorWidget: (context, url, error) {
+            return Container(
+              color: grey.withOpacity(0.1),
+              height: 200.0,
+              child: const Center(
+                child: Icon(
+                  Icons.error_rounded,
+                  color: grey,
+                ),
+              ),
+            );
+          },
           fit: BoxFit.contain,
         ),
       ),

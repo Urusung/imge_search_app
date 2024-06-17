@@ -5,7 +5,7 @@ import 'package:imge_search_app/colors.dart';
 import 'package:imge_search_app/fonst_style.dart';
 import 'package:imge_search_app/provider/bottom_navigation_provider.dart';
 import 'package:imge_search_app/screens/favorite_images_screen.dart';
-import 'package:imge_search_app/screens/images_search_screen.dart';
+import 'package:imge_search_app/screens/image_search_screen.dart/images_search_screen.dart';
 
 class BottomNavigationBarScreen extends ConsumerWidget {
   const BottomNavigationBarScreen({super.key});

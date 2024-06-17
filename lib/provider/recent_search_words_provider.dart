@@ -19,7 +19,12 @@ class RecentSearchWordsNotifier
     final savedWordsJson = prefs.getStringList('recent_search_words') ?? [];
     final savedWords = savedWordsJson
         .map(
-            (wordJson) => RecentSearchWordsModel.fromJson(jsonDecode(wordJson)))
+          (wordJson) => RecentSearchWordsModel.fromJson(
+            jsonDecode(
+              wordJson,
+            ),
+          ),
+        )
         .toList();
     state = savedWords;
   }
@@ -41,9 +46,16 @@ class RecentSearchWordsNotifier
       state[existingWordIndex] = RecentSearchWordsModel(
           recentSearchWord: searchWord, dateTime: currentDateTime);
     }
+
+    state.sort((a, b) => a.dateTime.compareTo(b.dateTime));
+
+    if (state.length > 10) {
+      //state.sort((a, b) => a.dateTime.compareTo(b.dateTime));
+      state.removeAt(0);
+    }
     final updatedWordsJson = state
         .map((word) => jsonEncode(word.toJson()))
-        .toList(); // 검색어를 json으로 변환
+        .toList(); // 검색어를 json 형태로 변환
     await prefs.setStringList(
         'recent_search_words', updatedWordsJson); // 로컬 저장소에 저장
   }
@@ -65,4 +77,4 @@ class RecentSearchWordsNotifier
   }
 }
 
-final isTurnOffRecentSearchWords = StateProvider<bool>((ref) => false);
+final isTurnOffRecentSearchWordsProvider = StateProvider<bool>((ref) => false);
