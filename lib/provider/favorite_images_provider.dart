@@ -11,22 +11,20 @@ class FavoriteImagesNotifier extends StateNotifier<List<String>> {
     loadFavoriteImages();
   }
 
-  void loadFavoriteImages() async {
+  Future<void> loadFavoriteImages() async {
     final prefs = await SharedPreferences.getInstance();
     final savedImages = prefs.getStringList('favorite_images') ?? [];
     state = savedImages;
   }
 
-  void saveFavoriteImage(String imageUrl) async {
+  Future<void> saveFavoriteImage(String imageUrl) async {
     final prefs = await SharedPreferences.getInstance();
-    if (!state.contains(imageUrl)) {
-      final updatedImages = [...state, imageUrl];
-      await prefs.setStringList('favorite_images', updatedImages);
-      state = updatedImages;
-    }
+    final updatedImages = [...state, imageUrl];
+    await prefs.setStringList('favorite_images', updatedImages);
+    state = updatedImages;
   }
 
-  void removeFavoriteImage(String imageUrl) async {
+  Future<void> removeFavoriteImage(String imageUrl) async {
     final prefs = await SharedPreferences.getInstance();
     final updatedImages = state.where((url) => url != imageUrl).toList();
     await prefs.setStringList('favorite_images', updatedImages);
