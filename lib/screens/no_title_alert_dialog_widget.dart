@@ -8,11 +8,13 @@ class NoTitleAlertDialogWidget extends ConsumerWidget {
     required this.contentText,
     required this.okButtonOnPressed,
     required this.cancelButtonOnPressed,
+    required this.isOneButton,
   });
 
   final String contentText;
   final VoidCallback okButtonOnPressed;
   final VoidCallback cancelButtonOnPressed;
+  final bool isOneButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,26 +23,38 @@ class NoTitleAlertDialogWidget extends ConsumerWidget {
       content: Text(
         contentText,
       ),
-      actions: [
-        TextButton(
-          onPressed: cancelButtonOnPressed,
-          child: const Text(
-            'Cancel',
-            style: TextStyle(
-              color: szsBlue,
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: okButtonOnPressed,
-          child: const Text(
-            'OK',
-            style: TextStyle(
-              color: szsBlue,
-            ),
-          ),
-        ),
-      ],
+      actions: isOneButton
+          ? [
+              TextButton(
+                onPressed: okButtonOnPressed,
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: szsBlue,
+                  ),
+                ),
+              ),
+            ]
+          : [
+              TextButton(
+                onPressed: cancelButtonOnPressed,
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: szsBlue,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: okButtonOnPressed,
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: szsBlue,
+                  ),
+                ),
+              ),
+            ],
     );
   }
 }

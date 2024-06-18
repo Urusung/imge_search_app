@@ -9,6 +9,7 @@ import 'package:imge_search_app/model/image_model.dart';
 import 'package:imge_search_app/provider/favorite_images_provider.dart';
 import 'package:imge_search_app/provider/images_search_provider.dart';
 import 'package:imge_search_app/screens/image_preview.dart';
+import 'package:imge_search_app/screens/no_title_alert_dialog_widget.dart';
 
 class SearchImagesColumnWidget extends ConsumerWidget {
   const SearchImagesColumnWidget({
@@ -105,75 +106,102 @@ class SearchImagesColumnWidget extends ConsumerWidget {
               crossAxisSpacing: 8,
               itemCount: data.length,
               itemBuilder: (context, index) {
+                int? statusCode;
+
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ImagePreviewScreen(imageUrl: data[index].imageUrl),
+                        builder: (context) {
+                          return ImagePreviewScreen(
+                            imageUrl: statusCode == 404
+                                ? data[index].thumbnailUrl
+                                : data[index].imageUrl,
+                          );
+                        },
                       ),
                     );
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(color: grey, width: 0.2),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12.0),
-                              child: CachedNetworkImage(
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(color: grey, width: 0.2),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Stack(
+                            alignment: Alignment.bottomRight,
+                            children: [
+                              CachedNetworkImage(
                                 imageUrl: data[index].imageUrl,
                                 errorWidget: (context, url, error) {
-                                  return Container(
-                                    color: grey.withOpacity(0.1),
-                                    height: 200.0,
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.error_rounded,
-                                        color: grey,
-                                      ),
-                                    ),
-                                  );
+                                  statusCode = int.tryParse(RegExp(r'\d{3}')
+                                          .firstMatch(error.toString())
+                                          ?.group(0) ??
+                                      '');
+                                  if (statusCode == 404) {
+                                    return Center(
+                                      child: CachedNetworkImage(
+                                          imageUrl: data[index].thumbnailUrl),
+                                    );
+                                  } else {
+                                    return Container();
+                                  }
                                 },
                                 fit: BoxFit.contain,
                               ),
-                            ),
+                              IconButton(
+                                onPressed: () {
+                                  if (statusCode == 404) {
+                                    showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return NoTitleAlertDialogWidget(
+                                              isOneButton: true,
+                                              contentText:
+                                                  'Image does not exist.',
+                                              okButtonOnPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              cancelButtonOnPressed: () {});
+                                        });
+                                  } else {
+                                    if (ref
+                                        .watch(favoriteImagesProvider)
+                                        .contains(data[index].imageUrl)) {
+                                      ref
+                                          .read(favoriteImagesProvider.notifier)
+                                          .removeFavoriteImage(
+                                              data[index].imageUrl);
+                                    } else {
+                                      ref
+                                          .read(favoriteImagesProvider.notifier)
+                                          .saveFavoriteImage(
+                                              data[index].imageUrl);
+                                    }
+                                  }
+                                },
+                                icon: Icon(
+                                  ref
+                                          .watch(favoriteImagesProvider)
+                                          .contains(data[index].imageUrl)
+                                      ? Icons.favorite_rounded
+                                      : Icons.favorite_border_rounded,
+                                  color: ref
+                                          .watch(favoriteImagesProvider)
+                                          .contains(data[index].imageUrl)
+                                      ? szsBlue
+                                      : grey,
+                                ),
+                              ),
+                            ],
                           ),
-                          IconButton(
-                            onPressed: () {
-                              if (ref
-                                  .watch(favoriteImagesProvider)
-                                  .contains(data[index].imageUrl)) {
-                                ref
-                                    .read(favoriteImagesProvider.notifier)
-                                    .removeFavoriteImage(data[index].imageUrl);
-                              } else {
-                                ref
-                                    .read(favoriteImagesProvider.notifier)
-                                    .saveFavoriteImage(data[index].imageUrl);
-                              }
-                            },
-                            icon: Icon(
-                              ref
-                                      .watch(favoriteImagesProvider)
-                                      .contains(data[index].imageUrl)
-                                  ? Icons.favorite_rounded
-                                  : Icons.favorite_border_rounded,
-                              color: ref
-                                      .watch(favoriteImagesProvider)
-                                      .contains(data[index].imageUrl)
-                                  ? szsBlue
-                                  : grey,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                       const Gap(4),
                       Text(

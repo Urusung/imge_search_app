@@ -87,35 +87,38 @@ class RecentSearchWordsListWidget extends ConsumerWidget {
                                 ),
                               ),
                               const Gap(12),
-                              GestureDetector(
-                                onTap: () {
-                                  imagesSearchTextFieldFocusNode.unfocus();
-                                  imagesSearchTextFieldController.text =
-                                      recentSearchWordsList[index]
-                                          .recentSearchWord;
-                                  ref
-                                      .read(imagesSearchProvider.notifier)
-                                      .searchImage(
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    imagesSearchTextFieldFocusNode.unfocus();
+                                    imagesSearchTextFieldController.text =
+                                        recentSearchWordsList[index]
+                                            .recentSearchWord;
+                                    ref
+                                        .read(imagesSearchProvider.notifier)
+                                        .searchImage(
+                                            recentSearchWordsList[index]
+                                                .recentSearchWord,
+                                            'accuracy');
+                                    ref
+                                        .read(sortTypeProvider.notifier)
+                                        .update((state) => 'accuracy');
+                                    ref
+                                        .read(
+                                            recentSearchWordsProvider.notifier)
+                                        .saveRecentSearchWords(
                                           recentSearchWordsList[index]
                                               .recentSearchWord,
-                                          'accuracy');
-                                  ref
-                                      .read(sortTypeProvider.notifier)
-                                      .update((state) => 'accuracy');
-                                  ref
-                                      .read(recentSearchWordsProvider.notifier)
-                                      .saveRecentSearchWords(
-                                        recentSearchWordsList[index]
-                                            .recentSearchWord,
-                                        DateTime.now(),
-                                      );
-                                },
-                                child: Text(
-                                  recentSearchWordsList[index].recentSearchWord,
-                                  style: recentSearchWordStyle,
+                                          DateTime.now(),
+                                        );
+                                  },
+                                  child: Text(
+                                    recentSearchWordsList[index]
+                                        .recentSearchWord,
+                                    style: recentSearchWordStyle,
+                                  ),
                                 ),
                               ),
-                              const Spacer(),
                               Text(
                                 '${recentSearchWordsList[index].dateTime.month.toString().padLeft(2, '0')}.${recentSearchWordsList[index].dateTime.day.toString().padLeft(2, '0')}.',
                                 style: recentSearchWordDateTimeStyle,
@@ -160,8 +163,10 @@ class RecentSearchWordsListWidget extends ConsumerWidget {
                               (state) => false,
                             )
                         : showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (context) => NoTitleAlertDialogWidget(
+                              isOneButton: false,
                               contentText:
                                   'Do you want to stop using recent search words?',
                               okButtonOnPressed: () {
@@ -194,8 +199,10 @@ class RecentSearchWordsListWidget extends ConsumerWidget {
                 GestureDetector(
                   onTap: () {
                     showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) => NoTitleAlertDialogWidget(
+                        isOneButton: false,
                         contentText:
                             'Do you want to delete all recent search words history?',
                         okButtonOnPressed: () {

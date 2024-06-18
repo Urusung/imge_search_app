@@ -10,27 +10,15 @@ class ImagePreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: black,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: black,
         iconTheme: const IconThemeData(color: white),
         elevation: 0,
       ),
       body: Center(
         child: CachedNetworkImage(
           imageUrl: imageUrl,
-          errorWidget: (context, url, error) {
-            return Container(
-              color: grey.withOpacity(0.1),
-              height: 200.0,
-              child: const Center(
-                child: Icon(
-                  Icons.error_rounded,
-                  color: grey,
-                ),
-              ),
-            );
-          },
           fit: BoxFit.contain,
         ),
       ),
