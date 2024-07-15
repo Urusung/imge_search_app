@@ -9,7 +9,7 @@
 </p>
 
 <p align="justify">
-<img src="https://user-images.githubusercontent.com/96646202/239154814-2078baae-9a83-4960-a645-9f2607a5b440.gif">
+<img src="[https://user-images.githubusercontent.com/96646202/239154814-2078baae-9a83-4960-a645-9f2607a5b440.gif](https://github.com/Urusung/imge_search_app/issues/1#issue-2407922603)">
 </p>
 
 <br>
