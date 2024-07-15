@@ -4,7 +4,7 @@ import 'package:imge_search_app/colors.dart';
 const bottomNavigationBarStyle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w500,
-  color: szsBlue,
+  color: mainColor,
 );
 
 const appBarStyle = TextStyle(

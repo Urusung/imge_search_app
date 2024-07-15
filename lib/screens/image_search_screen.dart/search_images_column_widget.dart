@@ -38,7 +38,7 @@ class SearchImagesColumnWidget extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: ref.watch(sortTypeProvider) == 'accuracy'
-                        ? szsBlue
+                        ? mainColor
                         : grey,
                     radius: 4.0,
                   ),
@@ -67,7 +67,7 @@ class SearchImagesColumnWidget extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: ref.watch(sortTypeProvider) == 'recency'
-                        ? szsBlue
+                        ? mainColor
                         : grey,
                     radius: 4.0,
                   ),
@@ -195,7 +195,7 @@ class SearchImagesColumnWidget extends ConsumerWidget {
                                   color: ref
                                           .watch(favoriteImagesProvider)
                                           .contains(data[index].imageUrl)
-                                      ? szsBlue
+                                      ? mainColor
                                       : grey,
                                 ),
                               ),

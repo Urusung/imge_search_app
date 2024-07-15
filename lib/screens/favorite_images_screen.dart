@@ -99,7 +99,7 @@ class FavoriteImagesScreen extends ConsumerWidget {
                             color: ref
                                     .watch(favoriteImagesProvider)
                                     .contains(favoriteImagesList[index])
-                                ? szsBlue
+                                ? mainColor
                                 : grey,
                           ),
                         ),

@@ -114,7 +114,7 @@ class _SearchScreenState extends ConsumerState<ImagesSearchScreen> {
       decoration: InputDecoration(
         hintText: 'Search for images',
         hintStyle: appBarStyle.copyWith(color: grey),
-        prefixIcon: const Icon(Icons.search_rounded, color: szsBlue),
+        prefixIcon: const Icon(Icons.search_rounded, color: mainColor),
         suffixIcon: Visibility(
           visible: ref.watch(imagesSearchTextFieldControllerTextProvider) == ''
               ? false
@@ -131,15 +131,15 @@ class _SearchScreenState extends ConsumerState<ImagesSearchScreen> {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36.0),
-          borderSide: const BorderSide(color: szsBlue, width: 2.0),
+          borderSide: const BorderSide(color: mainColor, width: 2.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36.0),
-          borderSide: const BorderSide(color: szsBlue, width: 2.0),
+          borderSide: const BorderSide(color: mainColor, width: 2.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36.0),
-          borderSide: const BorderSide(color: szsBlue, width: 2.0),
+          borderSide: const BorderSide(color: mainColor, width: 2.0),
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 4.0),
       ),

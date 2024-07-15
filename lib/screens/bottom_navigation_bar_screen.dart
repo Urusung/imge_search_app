@@ -49,7 +49,7 @@ class BottomNavigationBarScreen extends ConsumerWidget {
             type: BottomNavigationBarType.fixed,
             currentIndex: selectedIndex,
             onTap: onTap,
-            selectedItemColor: szsBlue,
+            selectedItemColor: mainColor,
             unselectedItemColor: grey,
             backgroundColor: white,
             selectedLabelStyle: bottomNavigationBarStyle,

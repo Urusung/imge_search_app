@@ -30,7 +30,7 @@ class NoTitleAlertDialogWidget extends ConsumerWidget {
                 child: const Text(
                   'OK',
                   style: TextStyle(
-                    color: szsBlue,
+                    color: mainColor,
                   ),
                 ),
               ),
@@ -41,7 +41,7 @@ class NoTitleAlertDialogWidget extends ConsumerWidget {
                 child: const Text(
                   'Cancel',
                   style: TextStyle(
-                    color: szsBlue,
+                    color: mainColor,
                   ),
                 ),
               ),
@@ -50,7 +50,7 @@ class NoTitleAlertDialogWidget extends ConsumerWidget {
                 child: const Text(
                   'OK',
                   style: TextStyle(
-                    color: szsBlue,
+                    color: mainColor,
                   ),
                 ),
               ),
