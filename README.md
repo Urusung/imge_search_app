@@ -1,16 +1,40 @@
 # imge_search_app
 
-A new Flutter project.
+목차
 
-## Getting Started
+## 프로젝트 소개
 
-This project is a starting point for a Flutter application.
+<p align="justify">
+카카오 검색 API를 이용하여 image_search_app 개발
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+<p align="justify">
+<img src="https://user-images.githubusercontent.com/96646202/239154814-2078baae-9a83-4960-a645-9f2607a5b440.gif">
+</p>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 기술 스택
+### Dart
+
+### Flutter
+
+### dio (API 통신을 위한 라이브러리)
+
+### cached_network_image (이미지를 캐시로 관리하면서 재활용)
+
+### river_pod (상태관리 라이브러리)
+
+<br>
+
+## 구현 기능
+
+### 이미지 검색 기능
+
+### 좋아하는 이미지 모아보는 기능
+
+### 최근 검색어
+
+<br>
+
+
