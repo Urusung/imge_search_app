@@ -21,7 +21,9 @@
 
 ### dio (API 통신을 위한 라이브러리)
 
-### cached_network_image (이미지를 캐시로 관리하면서 재활용)
+### cached_network_image (이미지를 캐시로 관리하는 라이브러리)
+
+### shared_preferences (디스크 저장 기능 라이브라리)
 
 ### river_pod (상태관리 라이브러리)
 
